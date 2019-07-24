@@ -16,7 +16,7 @@ class skills:
         return self.name
 
    def reset_skill1(self):
-        self.skill1 = 110
+        self.skill1 = 102
         mt2.game.start_skill_1()
 
    def reset_skill2(self):
@@ -28,7 +28,7 @@ class skills:
         mt2.game.start_skill_3()
 
    def reset_skill4(self):
-        self.skill4 = 41
+        self.skill4 = 63
         mt2.game.start_skill_4()
 
    def reset_fisical(self):
@@ -65,7 +65,7 @@ class actions:
         self.win_position = False
         self.health = False
         self.dead = False
-        self.dir  = 'd'
+        self.dir  = 's'
 
    def search_boss(self) :
      atk = False 
@@ -83,10 +83,10 @@ class actions:
            skill.reset() 
            old = self.dir
            mt2.game.active_fisical() 
-           if self.dir == 'd':
-              self.dir = 'a'
+           if self.dir == 'w':
+              self.dir = 's'
            else :
-              self.dir = 'd'   
+              self.dir = 'w'   
 
            mt2.game.up(old)           
            mt2.game.press(self.dir)           
@@ -95,16 +95,16 @@ class actions:
         elif atk == False :
            mt2.game.start_click((self.first_mob[0][0],self.first_mob[0][1]) , self.win_position )
            mt2.game.disable_fisical()  
-           mt2.game.up('d')  
-           mt2.game.up('a')                                          
+           mt2.game.up('w')  
+           mt2.game.up('s')                                          
      else :
         self.move()
 
      if atk == False :
         #print('disable_fisical', mt2.game.fisical_atk)
         mt2.game.disable_fisical()          
-        mt2.game.up('d')  
-        mt2.game.up('a')  
+        mt2.game.up('w')  
+        mt2.game.up('s')  
    ##search_boss         
                            
    def allow_pot(self) :

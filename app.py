@@ -7,6 +7,7 @@ import metin2.GLOBAL as m2
 
 
 def main():
+  show         = False
   last_time    = time.time()-10
   last_time_two= time.time()-10
   last_time3   = time.time()-10
@@ -31,9 +32,11 @@ def main():
 
       img_gray = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
 
-      #---- hidden own name
-      #cv2.rectangle(img_gray, (300,190), (380,200), color=(0, 255, 0), thickness=3) #camera perto
-      cv2.rectangle(img_gray, (300,210), (380,215), color=(0, 255, 0), thickness=3)  #camera longe
+      #---- hidden own name 800x600
+      cv2.rectangle(img_gray, (300,190), (380,220), color=(0, 255, 0), thickness=-1) #camera perto
+
+      #---- hidden own name fullhd
+      #cv2.rectangle(img_gray, (610,270), (680,300), color=(0, 275, 0), thickness=-1) #camera perto
 
       #---- match
       img_gray, list_mob = A_I_predict(cv2, img_gray)
@@ -41,8 +44,9 @@ def main():
       dead   = A_I_dead(cv2, img_gray)
       #print('health',health)
       m2.action.allow_atk(list_mob, win_position, health, dead)     
-
-      #cv2.imshow('window',img_gray)
+       
+      if show :
+          cv2.imshow('window',img_gray)
       #cv2.resizeWindow('window', win_position[2],win_position[3])      
 
       #loop game      
@@ -52,6 +56,17 @@ def main():
           print('close2')
           cv2.destroyAllWindows()
           break
+
+    if keyboard.is_pressed('1'):
+        print('wait 30')
+        time.sleep(30)
+
+    if keyboard.is_pressed('2'):
+        print('show')
+        if show == False :
+           show = True
+        else:
+           show = False
 
     if keyboard.is_pressed('q'):
         print('close')
